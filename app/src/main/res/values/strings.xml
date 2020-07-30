@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Anime Characters Guess</string>
+    <string name="title_activity_home">home</string>
+    <string name="title_activity_tentang">tentang</string>
+    <string name="adBaner">ca-app-pub-8201627220488781/4628523532</string>
+    <string name="adBaner1">ca-app-pub-3940256099942544/6300978111</string>
+
+</resources>

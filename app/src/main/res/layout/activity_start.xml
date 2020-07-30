@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".start"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/main_bg"
+    >
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="315dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text=" "
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:text="Art by : "
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/credit"
+        android:textSize="13dp"
+        android:textColor="#FFFFFF"
+        />
+
+
+    <ImageView
+        android:id="@+id/question"
+        android:layout_width="315dp"
+        android:layout_height="230dp"
+        android:src="@drawable/p2"
+        android:fontFamily="@font/comic"
+        android:gravity="center"
+        android:padding="0dp"
+        android:text="soal"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        />
+
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:fontFamily="@font/comic"
+            android:text="nama"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"/>
+
+
+        <TextView
+            android:textSize="16dp"
+            android:fontFamily="@font/comic"
+            android:textColor="#FFFFFF"
+            android:gravity="left"
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:text="seri"
+            android:id="@+id/series"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/btnA"
+            android:layout_width="155dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/comic"
+            android:onClick="a"
+            android:text="jawabana"
+            android:textColor="#FFFFFF"
+            />
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/btnB"
+            android:layout_width="155dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/comic"
+            android:onClick="a"
+            android:text="jawabana"
+            android:textColor="#FFFFFF"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/btnC"
+            android:layout_width="155dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/comic"
+            android:text="jawabana"
+            android:textColor="#FFFFFF"
+            />
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/btnD"
+            android:layout_width="155dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/comic"
+            android:text="jawabana"
+            android:textColor="#FFFFFF"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/btnNext"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg0"
+            android:fontFamily="@font/comic"
+            android:text="next"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical" >
+
+        <com.google.android.gms.ads.AdView
+            android:layout_marginTop="10dp"
+            android:id="@+id/spanduk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/adBaner" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

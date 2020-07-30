@@ -1,0 +1,2 @@
+rootProject.name='Anime Char Guess'
+include ':app'
