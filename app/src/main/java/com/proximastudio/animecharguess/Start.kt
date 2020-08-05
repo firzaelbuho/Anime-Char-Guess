@@ -115,12 +115,12 @@ class Start : AppCompatActivity() {
                 Database.score = scoreCounter
                 startActivity(Intent(this, Result::class.java))
 
-                // inters ads
-                if (mInterstitialAd.isLoaded) {
-                    mInterstitialAd.show()
-                } else {
-                    Log.d("TAG", "The interstitial wasn't loaded yet.")
-                }
+//                // inters ads
+//                if (mInterstitialAd.isLoaded) {
+//                    mInterstitialAd.show()
+//                } else {
+//                    Log.d("TAG", "The interstitial wasn't loaded yet.")
+//                }
 
 
             }
@@ -129,11 +129,12 @@ class Start : AppCompatActivity() {
                 Database.score = scoreCounter
                 startActivity(Intent(this, Result::class.java))
 
-                if (mInterstitialAd.isLoaded) {
-                    mInterstitialAd.show()
-                } else {
-                    Log.d("TAG", "The interstitial wasn't loaded yet.")
-                }
+//                // show ads
+//                if (mInterstitialAd.isLoaded) {
+//                    mInterstitialAd.show()
+//                } else {
+//                    Log.d("TAG", "The interstitial wasn't loaded yet.")
+//                }
             }
             else{
                 // go to next question

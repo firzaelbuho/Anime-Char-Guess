@@ -20,4 +20,9 @@ class Result : AppCompatActivity() {
             startActivity(Intent(this, Home::class.java))
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this,Home::class.java))
+    }
 }
