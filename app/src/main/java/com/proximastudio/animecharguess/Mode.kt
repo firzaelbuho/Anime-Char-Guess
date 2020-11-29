@@ -3,10 +3,9 @@ package com.proximastudio.animecharguess
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_home.*
+import com.proximastudio.animecharguess.model.Database
 import kotlinx.android.synthetic.main.activity_mode.*
 import kotlinx.android.synthetic.main.activity_mode.spanduk
 

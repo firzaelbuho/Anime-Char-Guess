@@ -21,7 +21,7 @@
         <activity android:name=".Result" />
         <activity android:name=".Mode" />
         <activity android:name=".Home" />
-        <activity android:name=".Database" />
+        <activity android:name=".model.Database" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

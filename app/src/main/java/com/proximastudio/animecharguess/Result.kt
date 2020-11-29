@@ -3,6 +3,7 @@ package com.proximastudio.animecharguess
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.proximastudio.animecharguess.model.Database
 import kotlinx.android.synthetic.main.activity_result.*
 
 class Result : AppCompatActivity() {
@@ -12,7 +13,7 @@ class Result : AppCompatActivity() {
         setContentView(R.layout.activity_result)
         score.text = "${Database.score}"
 
-        if(Database.score != (Database.pict.size * 10)){
+        if(Database.score != ((Database.characters?.size)!! * 10)){
             congrats.text = ""
         }
 

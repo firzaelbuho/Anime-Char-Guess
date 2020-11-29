@@ -1,27 +1,35 @@
 package com.proximastudio.animecharguess
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import com.proximastudio.animecharguess.model.Character
 import kotlinx.android.synthetic.main.activity_start.*
 import kotlinx.android.synthetic.main.activity_start.spanduk
-import java.util.*
-import kotlin.collections.List as List1
+import com.proximastudio.animecharguess.model.Database as Database
+import kotlin.collections.List
 
 
 class Start : AppCompatActivity() {
 
     private lateinit var mInterstitialAd: InterstitialAd
 
+    lateinit var characters : List<Character>
+
 
     lateinit var countDownTimer: CountDownTimer
-    lateinit var shuffledQuestions: List1<Int>
+    lateinit var shuffledQuestions: List<Int>
     lateinit var shuffledOptions : kotlin.collections.List<Int>
     var questionCounter = 0
     var myAnswer = -1
@@ -35,20 +43,26 @@ class Start : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
+        characters = Database.characters!!
+
         MobileAds.initialize(this) {}
         val adRequest = AdRequest.Builder().build()
         spanduk.loadAd(adRequest)
-
-
-
 
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd.adUnitId = Database.interstitialID
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
+        setup()
+
+    }
+
+
+
+    private fun setup() {
         var setOfQuestions = ArrayList<Int>()
 
-        for(i in 0 until Database.pict.size){
+        for(i in 0 until characters.size){
             setOfQuestions.add(i)
         }
         var preShuffleQuestions = setOfQuestions.shuffled()
@@ -74,7 +88,7 @@ class Start : AppCompatActivity() {
         }
         else{
             // do challenge mode
-            numberOfQuestions = Database.pict.size
+            numberOfQuestions = characters.size
             shuffledQuestions = preShuffleQuestions
             startQuestion(shuffledQuestions.get(0))
 
@@ -104,6 +118,8 @@ class Start : AppCompatActivity() {
 
             Database.playSound(R.raw.klik,this)
             // cek if end of question
+
+            timer.text = ""
 
 
 
@@ -144,9 +160,6 @@ class Start : AppCompatActivity() {
                 startQuestion(shuffledQuestions.get(questionCounter))
             }
         }
-
-
-
     }
 
     fun startQuestion(indexOfQuestion : Int){
@@ -166,7 +179,7 @@ class Start : AppCompatActivity() {
                 findAnswer()
             }
         }
-        countDownTimer.start()
+
 
         questionCounter++
 
@@ -176,8 +189,6 @@ class Start : AppCompatActivity() {
         key = indexOfQuestion
 
         btnNext.isEnabled = false
-
-
 
         // generate alternative options
 
@@ -191,17 +202,42 @@ class Start : AppCompatActivity() {
 
 
         // set up questions
+        val url ="https://firzaelbuho.github.io/hosting/anime/${characters.get(key).pict}.png"
 
-        credit.text = "Art by : ${Database.questionName.get(key).get(2)}"
+        credit.text = "Art by : ${characters.get(key).artist}"
         name.text = ""
         series.text = ""
-        question.setImageResource(Database.pict.get(key))
+        Glide.with(question)
+            .load(url)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .listener(object : RequestListener<Drawable> {
+
+                override fun onResourceReady(p0: Drawable?, p1: Any?, p2: com.bumptech.glide.request.target.Target<Drawable>?, p3: DataSource?, p4: Boolean): Boolean {
+                   countDownTimer.start()
+                    return false
+                }
+
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: com.bumptech.glide.request.target.Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+
+                    return true
+
+                }
+            })
+            .into(question)
 
 
-        btnA.text = "${Database.questionName.get(shuffledOptions.get(0)).get(0)}"
-        btnB.text = "${Database.questionName.get(shuffledOptions.get(1)).get(0)}"
-        btnC.text = "${Database.questionName.get(shuffledOptions.get(2)).get(0)}"
-        btnD.text = "${Database.questionName.get(shuffledOptions.get(3)).get(0)}"
+
+
+        btnA.text = "${characters.get(shuffledOptions.get(0)).name}"
+        btnB.text = "${characters.get(shuffledOptions.get(1)).name}"
+        btnC.text = "${characters.get(shuffledOptions.get(2)).name}"
+        btnD.text = "${characters.get(shuffledOptions.get(3)).name}"
 
 
 
@@ -245,8 +281,8 @@ class Start : AppCompatActivity() {
     }
 
     // setup detail
-        name.text = "Name : ${Database.questionName.get(key).get(0)}"
-        series.text = "Series : ${Database.questionName.get(key).get(1)}"
+        name.text = "Name : ${characters.get(key).name}"
+        series.text = "Series : ${characters.get(key).series}"
 
     }
 
@@ -264,7 +300,7 @@ class Start : AppCompatActivity() {
     fun getRandom(excludes: Array<Int>):Int{
 
         var isNew = true
-        val x = (0 until Database.pict.size).random()
+        val x = (0 until characters.size).random()
 
         for(e in excludes){
             if(e == x ){
@@ -293,11 +329,4 @@ class Start : AppCompatActivity() {
         btnD.isEnabled = true
 
     }
-
-
-
-
-
-
-
 }
